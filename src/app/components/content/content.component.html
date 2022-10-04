@@ -1,0 +1,12 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <app-formulario (estudiantesFormulario)="agregarEstudiante($event)" ></app-formulario>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <app-tabla [estudiantesTabla] = "estudiantesPadre"></app-tabla>
+        </div>
+    </div>
+</div>

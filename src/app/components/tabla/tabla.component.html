@@ -1,0 +1,21 @@
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Correo</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let estudiante of estudiantesTabla; let n = index">
+        <th scope="row">{{ n + 1}}</th>
+        <td>{{estudiante.nombre}}</td>
+        <td>{{estudiante.apellido}}</td>
+        <td>{{estudiante.correo}}</td>
+      </tr>
+      
+    </tbody>
+  </table>
+  
+  

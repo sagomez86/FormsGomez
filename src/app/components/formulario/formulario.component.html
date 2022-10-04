@@ -1,0 +1,96 @@
+<div class="container">
+    <div class="row">
+        <div class="col">
+            <h1>Alta de Estudiante</h1>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col">
+            <form [formGroup]="formulario" (ngSubmit)="submitForm()">
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="label_nombre">Nombre</label>
+                            <input type="text" class="form-control" [ngClass]="{'is-invalid' : formulario.get('nombre')?.errors && formulario.get('nombre')?.touched}" id="label_nombre" aria-describedby="emailHelp" formControlName="nombre" placeholder="Ingrese Nombre">
+                            <div class="invalid-feedback">
+                                <small *ngIf="formulario.get('nombre')?.errors?.['required'] && formulario.get('nombre')?.touched" id="nombre" class="form-text text-muted">El nombre es requerido</small>
+                            </div>
+                          </div>
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="label_apellido">Apellido</label>
+                            <input type="text" class="form-control" [ngClass]="{'is-invalid' : formulario.get('apellido')?.errors && formulario.get('apellido')?.touched}" id="label_apellido" aria-describedby="emailHelp" formControlName="apellido" placeholder="Ingrese Apellido">
+                            <div class="invalid-feedback">
+                                <small *ngIf="formulario.get('apellido')?.errors?.['required'] && formulario.get('apellido')?.touched" id="label_apellido" class="form-text text-muted">El apellido es requerido</small>
+                            </div>
+                          </div>                        
+                    </div>
+                </div> 
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="label_edad">Edad</label>
+                            <input type="number" class="form-control" [ngClass]="{'is-invalid' : formulario.get('edad')?.errors && formulario.get('edad')?.touched}" id="label_edad" aria-describedby="emailHelp" formControlName="edad" placeholder="Ingrese Edad">
+                            <div class="invalid-feedback">
+                                <small *ngIf="formulario.get('edad')?.errors?.['required'] && formulario.get('edad')?.touched" id="label_edad" class="form-text text-muted">La edad es requerida</small>
+                                <small *ngIf="formulario.get('edad')?.errors?.['min'] && formulario.get('edad')?.touched" id="label_edad" class="form-text text-muted">Debe ser mayor a 18</small>
+                            </div>
+                          </div>    
+                    </div>
+                </div> 
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="label_correo">Correo</label>
+                            <input type="email" class="form-control" [ngClass]="{'is-invalid' : formulario.get('correo')?.errors && formulario.get('correo')?.touched}" id="label_correo" aria-describedby="emailHelp" formControlName="correo" placeholder="Ingrese Correo">
+                            <div class="invalid-feedback">
+                                <small *ngIf="formulario.get('correo')?.errors?.['required'] && formulario.get('correo')?.touched" id="label_correo" class="form-text text-muted">El correo es requerido</small>
+                                <small *ngIf="formulario.get('correo')?.errors?.['email'] && formulario.get('correo')?.touched" id="label_correo" class="form-text text-muted">El formato del correo no es correcto</small>
+                            </div>
+                          </div>       
+                    </div>
+                </div> 
+                <div class="row mt-3">
+                    <div class="col">
+                        <div class="form-group">
+                            <label for="label_contrasena">Contraseña</label>
+                            <input type="password" class="form-control" [ngClass]="{'is-invalid' : formulario.get('password')?.errors && formulario.get('password')?.touched}" id="label_contrasena" aria-describedby="emailHelp" formControlName="password" placeholder="Ingrese Contraseña">
+                            <div class="invalid-feedback">
+                                <small *ngIf="formulario.get('password')?.errors?.['required'] && formulario.get('password')?.touched" id="label_contrasena" class="form-text text-muted">La Contraseña es requerida</small>
+                                <small *ngIf="formulario.get('password')?.errors?.['minlength'] && formulario.get('password')?.touched" id="label_contrasena" class="form-text text-muted">La contraseña debe tener mas de 8 caracteres</small>
+                            </div>
+                          </div>        
+                    </div>
+                </div>
+                <div class="row mt-3">
+                    <h3>
+                        <label for="label_cursos">Cursos</label>
+                    </h3>
+                    <div class="col" formArrayName = "cursos">
+                        <div *ngFor="let curso of cursos.controls; let i = index" >
+                            <div class="form-group mt-3">
+                                
+                                <input type="text" class="form-control" [ngClass]="{'is-invalid' : curso?.errors && curso?.touched}" id="label_cursos" aria-describedby="emailHelp" formControlName="{{ i }}" placeholder="Curso {{i + 1}}">
+                                <div class="invalid-feedback">
+                                    <small *ngIf="curso.errors?.['pattern'] && curso?.touched" id="label_contrasena" class="form-text text-muted">Ingrese un curso valido</small>
+                                </div>
+                            </div>
+                        </div>
+                              
+                    </div>
+                    <div class="col">
+                        <button type="button" class="btn btn-success" (click)="agregarCurso()">Agregar Curso</button>   
+                    </div>  
+                </div>
+                <div class="row mt-3">
+                    <div class="col">
+                        <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid" (click)="enviarFormulario()">Submit</button>   
+                    </div> 
+                </div>              
+            </form>
+        </div>
+    </div>
+</div>
